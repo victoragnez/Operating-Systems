@@ -25,11 +25,11 @@ void error(const char *msg){
 }
 
 static const int MAX_SNAKES = 10;
-const int SNAKE_LEN = 6;
+const int SNAKE_LEN = 15;
 const int MAX_TRIES = 100;
 const int mx[] = {1,0,-1,0}, my[] = {0,1,0,-1};
 
-int n, m;
+int n = 30, m = 40;
 char grid[300][300];
 
 #define DOWN 0
@@ -66,14 +66,20 @@ class SNAKE{
 		return true;
 	}
 	
-	static void comunicate(bool & run, const int & client){
-		while(!run);
+	static void comunicate(bool & running, const int & client){
+		char buffer[1<<10];
+		while(running){
+			int n = recv(client, buffer, sizeof(buffer), 0);
+			sprintf(buffer, "OK %d", rand());
+			n = send(client, buffer, strlen(buffer), 0);
+			sleep_for(milliseconds(1000));
+		}
+		close(client);
 	}
 	
 	public:
 	SNAKE(int socket_id, int ID):client(socket_id), id(ID), dir(-1), running(true){
-		thread t(comunicate, ref(running), ref(client));
-		comunicating = & t;
+		comunicating = new thread(comunicate, ref(running), ref(client));
 		int cnt = MAX_TRIES;
 		while(cnt--){
 			snake.clear();
@@ -188,5 +194,6 @@ int main (int argc, char *argv[]){
 		return 0;
 	}
 	srand(time(NULL));	
+	memset(grid, EMPTY, sizeof(grid));
 	connect_clients(atoi(argv[1]));
 }
