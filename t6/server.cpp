@@ -14,6 +14,7 @@
 #include <utility>
 #include <thread>
 #include <ncurses.h>
+#include <cassert>
 
 using namespace std;
 using std::this_thread::sleep_for;
@@ -24,12 +25,12 @@ using std::chrono::milliseconds;
 #define LEFT 2
 #define UP 3
 #define NONE 4
-#define EMPTY 'E'
+#define EMPTY '.'
 
 const int MAX_SNAKES = 10;
 const int SNAKE_LEN = 20;
 const int MAX_TRIES = 100;
-const int mx[] = {1,0,-1,0}, my[] = {0,1,0,-1};
+const int mx[] = {1,0,0,-1}, my[] = {0,1,-1,0};
 const int n = 30, m = 40;
 
 mutex use_data;
@@ -39,7 +40,7 @@ class SNAKE{
 	typedef pair<int, int> Node;
 	private:
 	const int client, id;
-	int dir;
+	int dir, ultdir;
 	bool running, alive;
 	thread * comunicating;
 	vector<Node> snake;
@@ -57,21 +58,22 @@ class SNAKE{
 				grid[snake[i].first][snake[i].second] != EMPTY)
 						return false;
 		for(int i = 0; i < (int)snake.size(); i++)
-			for(int j = 0; j < (int)snake.size(); j++)
+			for(int j = i + 1; j < (int)snake.size(); j++)
 				if(snake[i] == snake[j])
 					return false;
 		return true;
 	}
 	static void advance(vector<Node> & snake, int dir){
 		vector<Node> tmp;
-		tmp.push_back(move(snake[0], dir));
+		tmp.emplace_back(move(snake[0], dir));
 		for(int i = 1; i < SNAKE_LEN; i++)
-			tmp.push_back(snake[i-1]);
+			tmp.emplace_back(snake[i-1]);
 		snake = tmp;
 	}
 	static void comunicate(SNAKE * s){
 		auto & client = s->client;
 		auto & dir = s->dir;
+		auto & ultdir = s->ultdir;
 		auto & running = s->running;
 		auto & alive = s->alive;
 		
@@ -117,12 +119,12 @@ class SNAKE{
 					end(3);
 					break;
 				}
-				if(buffer[0] - '0' != NONE)
-					dir = buffer[0] - '0';
+				int cur = buffer[0] - '0';
+				if(cur != NONE && cur != (ultdir^3))
+					dir = cur;
 			}
 			sleep_for(milliseconds(20));
 		}
-		
 		if(alive)
 			send(client, "0", 1, 0);
 	}
@@ -131,6 +133,7 @@ class SNAKE{
 		auto & client = s->client;
 		auto & id = s->id;
 		auto & dir = s->dir;
+		auto & ultdir = s->ultdir;
 		auto & running = s->running;
 		auto & alive = s->alive;
 		auto & snake = s->snake;
@@ -151,14 +154,17 @@ class SNAKE{
 		int cnt = MAX_TRIES;
 		while(cnt--){
 			snake.clear();
-			snake.push_back(rand_pos());
+			snake.emplace_back(rand_pos());
 			int ord[] = {0, 1, 2, 3};
 			random_shuffle(ord, ord+4);
 			for(int i = 0; i < SNAKE_LEN-1; i++){
 				for(int k = 0; k < 4; k++){
-					snake.push_back(move(snake.back(), ord[k]));
-					if(ok(snake))
+					snake.emplace_back(move(snake.back(), ord[k]));
+					if(ok(snake)){
+						if(!i)
+							ultdir = ord[k]^3;
 						break;
+					}
 					snake.pop_back();
 				}
 			}
@@ -177,6 +183,7 @@ class SNAKE{
 					break;
 			}
 		}
+		lck.unlock();
 		if(dir == -1){
 			send(client, "0", 1, 0);
 			alive = running = false;
@@ -212,10 +219,11 @@ class SNAKE{
 	}
 	void advance(){
 		vector<Node> tmp;
-		tmp.push_back(move(snake[0], dir));
+		tmp.emplace_back(move(snake[0], dir));
 		for(int i = 1; i < SNAKE_LEN; i++)
-			tmp.push_back(snake[i-1]);
+			tmp.emplace_back(snake[i-1]);
 		snake = tmp;
+		ultdir = dir;
 	}
 	bool isalive(){
 		return alive;
@@ -229,40 +237,46 @@ class SNAKE{
 	int getclient(){
 		return client;
 	}
-	void join(){
-		comunicating->join();
-	}
 	void kill(bool can_restart = false){
 		if(!can_restart){
 			running = alive = false;
-			join();
+			comunicating->join();
+			delete comunicating;
+			comunicating = NULL;
 			close(client);	
 			return;	
 		}
 		running = false;
-		join();
+		comunicating->join();
+		delete comunicating;
 		comunicating = new thread(init,this);
+	}
+	~SNAKE(){
+		assert(!alive);
 	}
 };
 
-vector<SNAKE> snakes;
+vector<SNAKE*> snakes;
 
 int getID(){
 	static bool used[MAX_SNAKES];
 	for(int i = 0; i < MAX_SNAKES; i++)
 		used[i] = false;
-	if((int)snakes.size() > 10*MAX_SNAKES){
-		vector<SNAKE> alives_only;
-		for(SNAKE & s : snakes)
-			if(s.isalive())
+	if((int)snakes.size() > 3*MAX_SNAKES){
+		vector<SNAKE*> alives_only;
+		for(SNAKE * &s : snakes) if(s){
+			if(s->isalive())
 				alives_only.emplace_back(s);
-			else
-				s.join();
+			else{
+				delete s;
+				s = NULL;
+			}
+		}
 		snakes.swap(alives_only);
 	}
-	for(SNAKE & s : snakes)
-		if(s.getid() >= 0 && s.isalive())
-			used[s.getid()] = true;
+	for(SNAKE * &s : snakes) if(s)
+		if(s->getid() >= 0 && s->isalive())
+			used[s->getid()] = true;
 	for(int i = 0; i < MAX_SNAKES; i++)
 		if(!used[i])
 			return i;
@@ -297,17 +311,21 @@ void connect_clients(){
 			close(newSocketId);
 			break;
 		}
-		snakes.push_back(SNAKE(newSocketId, getID()));
+		snakes.emplace_back(new SNAKE(newSocketId, getID()));
 	}
-	for(SNAKE & s : snakes)
-		s.kill();
+	for(SNAKE * &s : snakes) if(s){
+		if(s->isalive())
+			s->kill();
+		delete s;
+		s = NULL;
+	}
 	close(socketId);
 }
 
-void getinput(){ //recebe comandos de fim de jogo e de matar cobras
+void getinput(){
 	char key;
 	while(!kill){
-		/* codar: key = key_pressed() */
+		scanf(" %c", &key); //AQUI CARLOS
 		if(key == 'q' || key == 'Q'){
 			kill = true;
 			int serverid;
@@ -327,59 +345,74 @@ void getinput(){ //recebe comandos de fim de jogo e de matar cobras
 		}
 			
 		if('0' <= key && key <= '9'){
-			for(SNAKE & s : snakes){
-				if(s.isalive() && s.getid() == key-'0')
-					s.kill();
+			for(SNAKE * &s : snakes) if(s){
+				if(s->isalive() && s->getid() == key-'0'){
+					s->kill();
+					delete s;
+					s = NULL;
+				}
 			}
 		}
 	}
 }
 
-void show_end(){} //mostra a tela de fim e aguarda apertar uma tecla
+void show_end(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
+	printf("Fim\n");
+	scanf("%*c");
+} 
 
-void desenha(){} //desenha o grid
+void desenha(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
+	system("clear");
+	printf("vc eh o servidor\n");
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++)
+			printf("%c", grid[i][j]);
+		printf("\n");
+	}
+}
 
 void run(){
 	while(!kill){
 		static int aux[n][m];
 		memset(aux, 0, sizeof(aux));
 		unique_lock<mutex>lck(use_data);
-		for(SNAKE & s : snakes)
-			if(s.isrunning()){
-				s.advance();
-				auto pos = s.getpos();
+		for(SNAKE * &s : snakes) if(s)
+			if(s->isrunning()){
+				s->advance();
+				auto pos = s->getpos();
 				for(auto p : pos){
 					if(0 <= p.first && p.first < n && 0 <= p.second && p.second < m)
 						aux[p.first][p.second]++;
 				}
 			}
-		for(SNAKE & s : snakes)
-			if(s.isrunning()){
-				auto pos = s.getpos();
+		for(SNAKE * &s : snakes) if(s)
+			if(s->isrunning()){
+				auto pos = s->getpos();
 				bool bad = false;
 				for(auto p : pos)
 					if(!(0 <= p.first && p.first < n && 0 <= p.second && p.second < m)){
 						bad = true;
 						break;
 					}
-				auto p = s.head();
+				auto p = s->head();
 				if(!bad && aux[p.first][p.second] > 1)
 					bad = true;
 				if(bad)
-					s.kill(true);
+					s->kill(true);
 			}
 		memset(grid, EMPTY, sizeof(grid));
-		for(SNAKE & s : snakes)
-			if(s.isrunning()){
-				auto pos = s.getpos();
+		for(SNAKE * &s : snakes) if(s){
+			if(s->isrunning()){
+				auto pos = s->getpos();
 				for(auto p : pos)
-					grid[p.first][p.second] = 'a' + s.getid();
-				auto p = s.head();
-				grid[p.first][p.second] = 'A' + s.getid();
+					grid[p.first][p.second] = 'a' + s->getid();
+				auto p = s->head();
+				grid[p.first][p.second] = 'A' + s->getid();
 			}
+		}
 		lck.unlock();
 		desenha();
-		sleep_for(milliseconds(300));
+		sleep_for(milliseconds(2000));
 	}
 }
 
@@ -392,9 +425,9 @@ int main (int argc, char *argv[]){
 	memset(grid, EMPTY, sizeof(grid));
 	vector<thread> threads;
 	portno = atoi(argv[1]);
-	threads.push_back(thread(connect_clients));
-	threads.push_back(thread(getinput));
-	threads.push_back(thread(run));
+	threads.emplace_back(thread(connect_clients));
+	threads.emplace_back(thread(getinput));
+	threads.emplace_back(thread(run));
 	for(thread & t : threads)
 		t.join();
 	show_end();

@@ -19,34 +19,51 @@ using namespace std;
 using std::this_thread::sleep_for;
 using std::chrono::milliseconds;
 
-#define DOWN 0
-#define RIGHT 1
-#define LEFT 2
-#define UP 3
-#define NONE 4
-#define EMPTY 'E'
+#define DOWN '0'
+#define RIGHT '1'
+#define LEFT '2'
+#define UP '3'
+#define NONE '4'
 
 const int MAX_SNAKES = 10;
 const int SNAKE_LEN = 20;
 const int MAX_TRIES = 100;
 const int n = 30, m = 40;
 
-char grid[n][m];
-int dir, id, key;
+char grid[n][m], key;
+int dir, id;
 bool not_ended = true;
 
-void gameover(bool esperado = false){} //tela final
+void gameover(bool esperado = false){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
+	printf("Fim de jogo\n");
+	if(!esperado) printf("O motivo pode ser: falha na conexao, alocacao, ou removido pelo servidor\n");
+}
 
-void menu(){ //tela que oferece começar um novo jogo ou sair
-	
+void menu(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
+	printf("aperte 1 para novo jogo ou 0 para sair\n");
 } 
 
-void options(){} //tela que oferece jogo normal ou randomico
+void options(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
+	printf("aperte 1 para jogo randomico e 0 para jogo normal\n");
+}
 
-void desenha(){} //desenha a partir do grid
+void desenha(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
+	system("clear");
+	printf("vc eh o %d\n", id);
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++)
+			printf("%c", grid[i][j]);
+		printf("\n");
+	}
+}
 
-void ler(){
+void ler(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
 	while(not_ended){
+		scanf(" %c", &key);
+		if(key == 'w') key = UP;
+		if(key == 'a') key = LEFT;
+		if(key == 's') key = DOWN;
+		if(key == 'd') key = RIGHT;
 		/* key = "key pressed" */
 	}
 }
@@ -99,11 +116,11 @@ void connect_server(char * host, int portno){
 	
 	while(1){
 		menu();
-		key = -1;
-		while(key != 0 && key != 1)
+		key = NONE;
+		while(key != '0' && key != '1')
 			sleep_for(milliseconds(10));
 		
-		sprintf(buffer, "%d", key);
+		sprintf(buffer, "%c", key);
 		
 		tt = send(serverid, buffer, strlen(buffer), 0); //envia se quer sair do jogo ou começar um novo (1 = novo, 0 = sair)
 		
@@ -126,21 +143,21 @@ void connect_server(char * host, int portno){
 			break;
 		}
 		
-		key = -1;
-		while(key != 0 && key != 1)
+		options();
+		key = NONE;
+		while(key != '0' && key != '1')
 			sleep_for(milliseconds(10));
 		
-		sprintf(buffer, "%d", key);
+		sprintf(buffer, "%c", key);
 		
-		tt = send(serverid, buffer, strlen(buffer), 0); //envia se quer jogo aleatorio ou normal (1 = rand, 0 = normal)
-		bool random = (buffer[0]=='1');
-		
+		tt = send(serverid, buffer, strlen(buffer), 0); //envia se quer jogo aleatorio ou normal (1 = rand, 0 = normal)		
 		if(tt < 0){
 			end(3);
 			return;
 		}
 		
 		key = NONE;
+		bool random = (buffer[0]=='1');
 		
 		while(1){ //jogo
 			tt = recv(serverid, buffer, sizeof(buffer), 0); // flag se continua seguida do grid
@@ -148,7 +165,7 @@ void connect_server(char * host, int portno){
 				end(4);
 				return;
 			}
-			if(buffer[0] != '1')
+			if(buffer[0] == '0')
 				break;
 			
 			int ptr = 1;
@@ -158,15 +175,17 @@ void connect_server(char * host, int portno){
 			
 			desenha();
 			if(!random){
-				if(key < 0 || key > 3)
+				if(key < '0' || key > '3')
 					key = NONE;
-				sprintf(buffer, "%d", key);
+				sprintf(buffer, "%c", key);
 			
 				tt = send(serverid, buffer, strlen(buffer), 0); //envia a tecla pressionada
 				if(tt < 0){
 					end(5);
 					return;
 				}
+				
+				key = NONE;
 			}
 		}
 		
