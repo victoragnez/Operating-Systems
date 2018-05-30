@@ -1,10 +1,10 @@
 {
 "Memory Info": {
     "Total Memory (kB)": "8071492",
-    "Memory Used (kB)": "2354108",
-    "Memory Free (kB)": "5226400",
-    "Memory for Buffers (kB)": "55104",
-    "Memory Cached (kB)": "435880",
+    "Memory Used (kB)": "2969652",
+    "Memory Free (kB)": "3162024",
+    "Memory for Buffers (kB)": "382240",
+    "Memory Cached (kB)": "1557576",
     "Total Swap (kB)": "9999356",
     "Used Swap (kB)": "0",
     "Cached Swap (kB)": "0",
@@ -17,117 +17,141 @@
     }
 },
 "Process List": {
-    "Proc_31113": {
-        "pid": "31113",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "5.1",
-        "minor page faults": "528974",
-        "major page faults": "132"
-    },
     "Proc_10314": {
         "pid": "10314",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "3.4",
-        "minor page faults": "641082",
-        "major page faults": "707"
+        "%mem": "5.9",
+        "minor page faults": "10090934",
+        "major page faults": "755"
+    },
+    "Proc_22791": {
+        "pid": "22791",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "5.9",
+        "minor page faults": "6481440",
+        "major page faults": "32"
     },
     "Proc_1680": {
         "pid": "1680",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "3.1",
-        "minor page faults": "63276",
-        "major page faults": "272"
+        "%mem": "3.8",
+        "minor page faults": "76389",
+        "major page faults": "284"
     },
-    "Proc_10370": {
-        "pid": "10370",
+    "Proc_31113": {
+        "pid": "31113",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "2.3",
-        "minor page faults": "1451815",
-        "major page faults": "881"
+        "%mem": "3.0",
+        "minor page faults": "35116071",
+        "major page faults": "409"
     },
     "Proc_1900": {
         "pid": "1900",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "1.7",
-        "minor page faults": "82515",
-        "major page faults": "893"
+        "%mem": "2.3",
+        "minor page faults": "187842",
+        "major page faults": "899"
+    },
+    "Proc_6994": {
+        "pid": "6994",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "1.9",
+        "minor page faults": "1241349",
+        "major page faults": "0"
+    },
+    "Proc_4880": {
+        "pid": "4880",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "1.5",
+        "minor page faults": "72601",
+        "major page faults": "442"
     },
     "Proc_2143": {
         "pid": "2143",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "1.4",
-        "minor page faults": "28889",
+        "minor page faults": "29238",
         "major page faults": "214"
     },
     "Proc_1944": {
         "pid": "1944",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "1.3",
-        "minor page faults": "56547",
-        "major page faults": "1999"
-    },
-    "Proc_4880": {
-        "pid": "4880",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "1.1",
-        "minor page faults": "54987",
-        "major page faults": "302"
-    },
-    "Proc_31249": {
-        "pid": "31249",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "1.0",
-        "minor page faults": "8841",
-        "major page faults": "0"
-    },
-    "Proc_1884": {
-        "pid": "1884",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "1.0",
-        "minor page faults": "33855",
-        "major page faults": "217"
+        "%mem": "1.4",
+        "minor page faults": "66717",
+        "major page faults": "2010"
     },
     "Proc_1085": {
         "pid": "1085",
         "uid": "0",
         "user": "root",
-        "%mem": "0.7",
-        "minor page faults": "100815",
+        "%mem": "1.3",
+        "minor page faults": "1028710",
         "major page faults": "304"
     },
-    "Proc_1890": {
-        "pid": "1890",
+    "Proc_1884": {
+        "pid": "1884",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "0.7",
-        "minor page faults": "210173",
-        "major page faults": "1483"
+        "%mem": "1.1",
+        "minor page faults": "38820",
+        "major page faults": "224"
     },
     "Proc_1854": {
         "pid": "1854",
         "uid": "1000",
         "user": "victoragnez",
+        "%mem": "0.9",
+        "minor page faults": "223818",
+        "major page faults": "740"
+    },
+    "Proc_1890": {
+        "pid": "1890",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.8",
+        "minor page faults": "313671",
+        "major page faults": "1575"
+    },
+    "Proc_4807": {
+        "pid": "4807",
+        "uid": "1000",
+        "user": "victoragnez",
         "%mem": "0.7",
-        "minor page faults": "73309",
-        "major page faults": "612"
+        "minor page faults": "15040",
+        "major page faults": "0"
+    },
+    "Proc_22840": {
+        "pid": "22840",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.7",
+        "minor page faults": "16668",
+        "major page faults": "0"
+    },
+    "Proc_32546": {
+        "pid": "32546",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.6",
+        "minor page faults": "15843",
+        "major page faults": "1"
     },
     "Proc_2055": {
         "pid": "2055",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.4",
-        "minor page faults": "9657",
-        "major page faults": "7"
+        "minor page faults": "9816",
+        "major page faults": "13"
     },
     "Proc_1903": {
         "pid": "1903",
@@ -142,16 +166,16 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.4",
-        "minor page faults": "9681",
-        "major page faults": "4"
+        "minor page faults": "9745",
+        "major page faults": "10"
     },
-    "Proc_31289": {
-        "pid": "31289",
+    "Proc_1705": {
+        "pid": "1705",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "0.4",
-        "minor page faults": "3755",
-        "major page faults": "4"
+        "%mem": "0.3",
+        "minor page faults": "12649",
+        "major page faults": "132"
     },
     "Proc_2192": {
         "pid": "2192",
@@ -161,53 +185,109 @@
         "minor page faults": "11007",
         "major page faults": "74"
     },
-    "Proc_1922": {
-        "pid": "1922",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.3",
-        "minor page faults": "10824",
-        "major page faults": "76"
-    },
     "Proc_1861": {
         "pid": "1861",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.3",
-        "minor page faults": "8274",
-        "major page faults": "209"
+        "minor page faults": "8420",
+        "major page faults": "217"
     },
-    "Proc_1705": {
-        "pid": "1705",
+    "Proc_1922": {
+        "pid": "1922",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.3",
+        "minor page faults": "12913",
+        "major page faults": "78"
+    },
+    "Proc_1598": {
+        "pid": "1598",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.3",
+        "minor page faults": "6554",
+        "major page faults": "20"
+    },
+    "Proc_2221": {
+        "pid": "2221",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.2",
-        "minor page faults": "6626",
-        "major page faults": "132"
+        "minor page faults": "3881",
+        "major page faults": "73"
+    },
+    "Proc_1637": {
+        "pid": "1637",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.2",
+        "minor page faults": "5038",
+        "major page faults": "34"
+    },
+    "Proc_1682": {
+        "pid": "1682",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.2",
+        "minor page faults": "12454",
+        "major page faults": "38"
     },
     "Proc_1894": {
         "pid": "1894",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.2",
-        "minor page faults": "2485",
+        "minor page faults": "2499",
         "major page faults": "70"
     },
-    "Proc_1682": {
-        "pid": "1682",
+    "Proc_1860": {
+        "pid": "1860",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.2",
+        "minor page faults": "3979",
+        "major page faults": "132"
+    },
+    "Proc_22112": {
+        "pid": "22112",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.1",
-        "minor page faults": "4928",
-        "major page faults": "37"
+        "minor page faults": "3759",
+        "major page faults": "24"
+    },
+    "Proc_949": {
+        "pid": "949",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.1",
+        "minor page faults": "4396",
+        "major page faults": "390"
     },
     "Proc_1644": {
         "pid": "1644",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.1",
-        "minor page faults": "3284",
+        "minor page faults": "3549",
         "major page faults": "167"
+    },
+    "Proc_2385": {
+        "pid": "2385",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.1",
+        "minor page faults": "6532",
+        "major page faults": "8"
+    },
+    "Proc_1853": {
+        "pid": "1853",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.1",
+        "minor page faults": "3986",
+        "major page faults": "2"
     },
     "Proc_1895": {
         "pid": "1895",
@@ -217,21 +297,13 @@
         "minor page faults": "1006",
         "major page faults": "35"
     },
-    "Proc_1853": {
-        "pid": "1853",
+    "Proc_32015": {
+        "pid": "32015",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.1",
-        "minor page faults": "1955",
-        "major page faults": "2"
-    },
-    "Proc_1860": {
-        "pid": "1860",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.1",
-        "minor page faults": "3321",
-        "major page faults": "122"
+        "minor page faults": "832",
+        "major page faults": "14"
     },
     "Proc_2019": {
         "pid": "2019",
@@ -241,213 +313,277 @@
         "minor page faults": "3707",
         "major page faults": "27"
     },
-    "Proc_22112": {
-        "pid": "22112",
+    "Proc_22114": {
+        "pid": "22114",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.1",
-        "minor page faults": "3679",
-        "major page faults": "19"
+        "minor page faults": "2380",
+        "major page faults": "53"
     },
     "Proc_1772": {
         "pid": "1772",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.1",
-        "minor page faults": "1461",
+        "minor page faults": "37493",
         "major page faults": "70"
     },
-    "Proc_949": {
-        "pid": "949",
+    "Proc_930": {
+        "pid": "930",
         "uid": "0",
         "user": "root",
         "%mem": "0.1",
-        "minor page faults": "3082",
-        "major page faults": "252"
+        "minor page faults": "9031",
+        "major page faults": "152"
     },
-    "Proc_1637": {
-        "pid": "1637",
+    "Proc_17418": {
+        "pid": "17418",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.1",
+        "minor page faults": "628",
+        "major page faults": "0"
+    },
+    "Proc_22091": {
+        "pid": "22091",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.1",
-        "minor page faults": "2294",
-        "major page faults": "34"
+        "minor page faults": "1471",
+        "major page faults": "13"
     },
-    "Proc_1877": {
-        "pid": "1877",
+    "Proc_1733": {
+        "pid": "1733",
         "uid": "1000",
         "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "2144",
-        "major page faults": "98"
+        "%mem": "0.1",
+        "minor page faults": "1770",
+        "major page faults": "3"
     },
-    "Proc_27111": {
-        "pid": "27111",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "481",
-        "major page faults": "10"
-    },
-    "Proc_2089": {
-        "pid": "2089",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "1787",
-        "major page faults": "79"
-    },
-    "Proc_2221": {
-        "pid": "2221",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "2877",
-        "major page faults": "73"
-    },
-    "Proc_1739": {
-        "pid": "1739",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "2354",
-        "major page faults": "11"
+    "Proc_17414": {
+        "pid": "17414",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.1",
+        "minor page faults": "804",
+        "major page faults": "0"
     },
     "Proc_1100": {
         "pid": "1100",
         "uid": "113",
         "user": "colord",
         "%mem": "0.0",
-        "minor page faults": "2030",
+        "minor page faults": "4912",
         "major page faults": "20"
-    },
-    "Proc_1898": {
-        "pid": "1898",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.0",
-        "minor page faults": "448968",
-        "major page faults": "13"
-    },
-    "Proc_930": {
-        "pid": "930",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.0",
-        "minor page faults": "7127",
-        "major page faults": "143"
     },
     "Proc_229": {
         "pid": "229",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "1398",
+        "minor page faults": "6776",
         "major page faults": "26"
     },
-    "Proc_1733": {
-        "pid": "1733",
+    "Proc_1877": {
+        "pid": "1877",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1657",
-        "major page faults": "3"
+        "minor page faults": "2174",
+        "major page faults": "98"
     },
     "Proc_1743": {
         "pid": "1743",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1717",
-        "major page faults": "2"
+        "minor page faults": "1804",
+        "major page faults": "4"
+    },
+    "Proc_2089": {
+        "pid": "2089",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "1829",
+        "major page faults": "79"
     },
     "Proc_1737": {
         "pid": "1737",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1493",
-        "major page faults": "37"
+        "minor page faults": "2261",
+        "major page faults": "49"
+    },
+    "Proc_1739": {
+        "pid": "1739",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "2358",
+        "major page faults": "11"
+    },
+    "Proc_1807": {
+        "pid": "1807",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "1716",
+        "major page faults": "26"
+    },
+    "Proc_1898": {
+        "pid": "1898",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.0",
+        "minor page faults": "1638508",
+        "major page faults": "13"
     },
     "Proc_2101": {
         "pid": "2101",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1062",
+        "minor page faults": "4306",
         "major page faults": "75"
     },
-    "Proc_22114": {
-        "pid": "22114",
+    "Proc_1690": {
+        "pid": "1690",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1680",
-        "major page faults": "35"
+        "minor page faults": "3339",
+        "major page faults": "8"
+    },
+    "Proc_17422": {
+        "pid": "17422",
+        "uid": "7",
+        "user": "lp",
+        "%mem": "0.0",
+        "minor page faults": "408",
+        "major page faults": "0"
+    },
+    "Proc_9791": {
+        "pid": "9791",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "6142",
+        "major page faults": "0"
     },
     "Proc_1054": {
         "pid": "1054",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "2484",
-        "major page faults": "9"
+        "minor page faults": "2768",
+        "major page faults": "11"
     },
-    "Proc_1598": {
-        "pid": "1598",
+    "Proc_14726": {
+        "pid": "14726",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1307",
-        "major page faults": "20"
+        "minor page faults": "12251",
+        "major page faults": "0"
+    },
+    "Proc_18083": {
+        "pid": "18083",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "1916",
+        "major page faults": "0"
+    },
+    "Proc_1741": {
+        "pid": "1741",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "1014",
+        "major page faults": "4"
     },
     "Proc_2165": {
         "pid": "2165",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1563",
+        "minor page faults": "1923",
         "major page faults": "7"
     },
-    "Proc_31295": {
-        "pid": "31295",
+    "Proc_2589": {
+        "pid": "2589",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "853",
-        "major page faults": "0"
+        "minor page faults": "611",
+        "major page faults": "18"
     },
     "Proc_1": {
         "pid": "1",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "14600",
-        "major page faults": "65"
+        "minor page faults": "18894",
+        "major page faults": "66"
     },
     "Proc_1859": {
         "pid": "1859",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1456",
+        "minor page faults": "1460",
         "major page faults": "2"
+    },
+    "Proc_1378": {
+        "pid": "1378",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "546",
+        "major page faults": "14"
+    },
+    "Proc_1620": {
+        "pid": "1620",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "1873",
+        "major page faults": "1"
+    },
+    "Proc_2012": {
+        "pid": "2012",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "672",
+        "major page faults": "9"
     },
     "Proc_1893": {
         "pid": "1893",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "735",
+        "minor page faults": "740",
         "major page faults": "5"
     },
-    "Proc_31343": {
-        "pid": "31343",
+    "Proc_18354": {
+        "pid": "18354",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "13208",
+        "minor page faults": "23849",
         "major page faults": "0"
+    },
+    "Proc_911": {
+        "pid": "911",
+        "uid": "106",
+        "user": "messagebus",
+        "%mem": "0.0",
+        "minor page faults": "1517",
+        "major page faults": "12"
     },
     "Proc_1650": {
         "pid": "1650",
@@ -462,7 +598,7 @@
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "698",
+        "minor page faults": "707",
         "major page faults": "10"
     },
     "Proc_268": {
@@ -470,47 +606,23 @@
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "5111",
+        "minor page faults": "16984",
         "major page faults": "20"
     },
-    "Proc_2385": {
-        "pid": "2385",
+    "Proc_22847": {
+        "pid": "22847",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "3553",
-        "major page faults": "8"
-    },
-    "Proc_22091": {
-        "pid": "22091",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "1360",
-        "major page faults": "7"
-    },
-    "Proc_2589": {
-        "pid": "2589",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "574",
-        "major page faults": "18"
-    },
-    "Proc_1807": {
-        "pid": "1807",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "1569",
-        "major page faults": "25"
+        "minor page faults": "219",
+        "major page faults": "0"
     },
     "Proc_1554": {
         "pid": "1554",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "4519",
+        "minor page faults": "8857",
         "major page faults": "12"
     },
     "Proc_1568": {
@@ -518,15 +630,31 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "497",
+        "minor page faults": "503",
         "major page faults": "34"
+    },
+    "Proc_1963": {
+        "pid": "1963",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "615",
+        "major page faults": "5"
+    },
+    "Proc_5838": {
+        "pid": "5838",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.0",
+        "minor page faults": "436",
+        "major page faults": "13"
     },
     "Proc_886": {
         "pid": "886",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "771",
+        "minor page faults": "773",
         "major page faults": "16"
     },
     "Proc_1810": {
@@ -534,15 +662,31 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "554",
+        "minor page faults": "642",
         "major page faults": "1"
+    },
+    "Proc_1070": {
+        "pid": "1070",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.0",
+        "minor page faults": "1065",
+        "major page faults": "4"
+    },
+    "Proc_1980": {
+        "pid": "1980",
+        "uid": "109",
+        "user": "whoopsie",
+        "%mem": "0.0",
+        "minor page faults": "992",
+        "major page faults": "57"
     },
     "Proc_1947": {
         "pid": "1947",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "383",
+        "minor page faults": "384",
         "major page faults": "2"
     },
     "Proc_1744": {
@@ -550,48 +694,16 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "503",
+        "minor page faults": "509",
         "major page faults": "3"
     },
-    "Proc_1980": {
-        "pid": "1980",
-        "uid": "109",
-        "user": "whoopsie",
-        "%mem": "0.0",
-        "minor page faults": "955",
-        "major page faults": "57"
-    },
-    "Proc_1690": {
-        "pid": "1690",
+    "Proc_1380": {
+        "pid": "1380",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "3322",
-        "major page faults": "8"
-    },
-    "Proc_1741": {
-        "pid": "1741",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "937",
-        "major page faults": "4"
-    },
-    "Proc_911": {
-        "pid": "911",
-        "uid": "106",
-        "user": "messagebus",
-        "%mem": "0.0",
-        "minor page faults": "882",
-        "major page faults": "12"
-    },
-    "Proc_1963": {
-        "pid": "1963",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "593",
-        "major page faults": "4"
+        "minor page faults": "9668",
+        "major page faults": "82"
     },
     "Proc_1364": {
         "pid": "1364",
@@ -601,36 +713,28 @@
         "minor page faults": "735",
         "major page faults": "1"
     },
+    "Proc_18726": {
+        "pid": "18726",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "222",
+        "major page faults": "0"
+    },
     "Proc_1956": {
         "pid": "1956",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "465",
+        "minor page faults": "467",
         "major page faults": "7"
-    },
-    "Proc_31577": {
-        "pid": "31577",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "219",
-        "major page faults": "0"
-    },
-    "Proc_1380": {
-        "pid": "1380",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "8999",
-        "major page faults": "82"
     },
     "Proc_2074": {
         "pid": "2074",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "1162",
+        "minor page faults": "1212",
         "major page faults": "20"
     },
     "Proc_2052": {
@@ -641,21 +745,21 @@
         "minor page faults": "1292",
         "major page faults": "8"
     },
-    "Proc_1378": {
-        "pid": "1378",
+    "Proc_1665": {
+        "pid": "1665",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "406",
-        "major page faults": "7"
+        "minor page faults": "415",
+        "major page faults": "0"
     },
     "Proc_1144": {
         "pid": "1144",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "429",
-        "major page faults": "50"
+        "minor page faults": "453",
+        "major page faults": "56"
     },
     "Proc_1365": {
         "pid": "1365",
@@ -665,13 +769,13 @@
         "minor page faults": "21",
         "major page faults": "0"
     },
-    "Proc_2012": {
-        "pid": "2012",
-        "uid": "1000",
-        "user": "victoragnez",
+    "Proc_1399": {
+        "pid": "1399",
+        "uid": "65534",
+        "user": "nobody",
         "%mem": "0.0",
-        "minor page faults": "617",
-        "major page faults": "9"
+        "minor page faults": "341",
+        "major page faults": "17"
     },
     "Proc_1538": {
         "pid": "1538",
@@ -681,36 +785,20 @@
         "minor page faults": "109",
         "major page faults": "13"
     },
-    "Proc_1620": {
-        "pid": "1620",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "1053",
-        "major page faults": "1"
-    },
     "Proc_908": {
         "pid": "908",
         "uid": "111",
         "user": "avahi",
         "%mem": "0.0",
-        "minor page faults": "323",
-        "major page faults": "20"
-    },
-    "Proc_2970": {
-        "pid": "2970",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.0",
-        "minor page faults": "869",
-        "major page faults": "0"
+        "minor page faults": "353",
+        "major page faults": "21"
     },
     "Proc_1766": {
         "pid": "1766",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "934",
+        "minor page faults": "938",
         "major page faults": "2"
     },
     "Proc_1703": {
@@ -718,47 +806,47 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "372",
+        "minor page faults": "375",
         "major page faults": "2"
-    },
-    "Proc_1070": {
-        "pid": "1070",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.0",
-        "minor page faults": "1057",
-        "major page faults": "4"
     },
     "Proc_889": {
         "pid": "889",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "316",
+        "minor page faults": "319",
         "major page faults": "11"
+    },
+    "Proc_902": {
+        "pid": "902",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.0",
+        "minor page faults": "178",
+        "major page faults": "4"
     },
     "Proc_1607": {
         "pid": "1607",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "100",
+        "minor page faults": "115",
         "major page faults": "24"
     },
-    "Proc_2972": {
-        "pid": "2972",
+    "Proc_906": {
+        "pid": "906",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "662",
-        "major page faults": "1"
+        "minor page faults": "1118",
+        "major page faults": "3"
     },
     "Proc_884": {
         "pid": "884",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "703",
+        "minor page faults": "707",
         "major page faults": "17"
     },
     "Proc_1593": {
@@ -769,29 +857,21 @@
         "minor page faults": "67",
         "major page faults": "7"
     },
-    "Proc_1636": {
-        "pid": "1636",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "387",
-        "major page faults": "5"
-    },
     "Proc_945": {
         "pid": "945",
         "uid": "104",
         "user": "syslog",
         "%mem": "0.0",
-        "minor page faults": "566",
-        "major page faults": "50"
+        "minor page faults": "694",
+        "major page faults": "52"
     },
-    "Proc_3377": {
-        "pid": "3377",
-        "uid": "0",
-        "user": "root",
+    "Proc_1636": {
+        "pid": "1636",
+        "uid": "1000",
+        "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "445",
-        "major page faults": "0"
+        "minor page faults": "417",
+        "major page faults": "5"
     },
     "Proc_1670": {
         "pid": "1670",
@@ -801,14 +881,6 @@
         "minor page faults": "101",
         "major page faults": "19"
     },
-    "Proc_31576": {
-        "pid": "31576",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "80",
-        "major page faults": "0"
-    },
     "Proc_1729": {
         "pid": "1729",
         "uid": "1000",
@@ -817,52 +889,20 @@
         "minor page faults": "455",
         "major page faults": "0"
     },
-    "Proc_2975": {
-        "pid": "2975",
-        "uid": "7",
-        "user": "lp",
-        "%mem": "0.0",
-        "minor page faults": "404",
-        "major page faults": "0"
-    },
-    "Proc_2978": {
-        "pid": "2978",
-        "uid": "7",
-        "user": "lp",
-        "%mem": "0.0",
-        "minor page faults": "403",
-        "major page faults": "0"
-    },
     "Proc_10503": {
         "pid": "10503",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "514",
+        "minor page faults": "520",
         "major page faults": "3"
-    },
-    "Proc_2976": {
-        "pid": "2976",
-        "uid": "7",
-        "user": "lp",
-        "%mem": "0.0",
-        "minor page faults": "406",
-        "major page faults": "0"
-    },
-    "Proc_2977": {
-        "pid": "2977",
-        "uid": "7",
-        "user": "lp",
-        "%mem": "0.0",
-        "minor page faults": "403",
-        "major page faults": "0"
     },
     "Proc_1808": {
         "pid": "1808",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "212",
+        "minor page faults": "243",
         "major page faults": "13"
     },
     "Proc_10534": {
@@ -886,23 +926,31 @@
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
-        "minor page faults": "498",
-        "major page faults": "53"
+        "minor page faults": "506",
+        "major page faults": "55"
+    },
+    "Proc_18725": {
+        "pid": "18725",
+        "uid": "1000",
+        "user": "victoragnez",
+        "%mem": "0.0",
+        "minor page faults": "80",
+        "major page faults": "0"
     },
     "Proc_1940": {
         "pid": "1940",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "405",
-        "major page faults": "6"
+        "minor page faults": "431",
+        "major page faults": "7"
     },
     "Proc_1710": {
         "pid": "1710",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "377",
+        "minor page faults": "402",
         "major page faults": "3"
     },
     "Proc_11543": {
@@ -913,20 +961,12 @@
         "minor page faults": "149",
         "major page faults": "5"
     },
-    "Proc_1665": {
-        "pid": "1665",
-        "uid": "1000",
-        "user": "victoragnez",
-        "%mem": "0.0",
-        "minor page faults": "393",
-        "major page faults": "0"
-    },
     "Proc_1915": {
         "pid": "1915",
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "328",
+        "minor page faults": "332",
         "major page faults": "1"
     },
     "Proc_1688": {
@@ -942,7 +982,7 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "452",
+        "minor page faults": "453",
         "major page faults": "1"
     },
     "Proc_1975": {
@@ -958,16 +998,8 @@
         "uid": "1000",
         "user": "victoragnez",
         "%mem": "0.0",
-        "minor page faults": "80",
+        "minor page faults": "82",
         "major page faults": "2"
-    },
-    "Proc_1399": {
-        "pid": "1399",
-        "uid": "65534",
-        "user": "nobody",
-        "%mem": "0.0",
-        "minor page faults": "312",
-        "major page faults": "15"
     },
     "Proc_924": {
         "pid": "924",
@@ -993,14 +1025,6 @@
         "minor page faults": "39",
         "major page faults": "0"
     },
-    "Proc_906": {
-        "pid": "906",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.0",
-        "minor page faults": "460",
-        "major page faults": "3"
-    },
     "Proc_1261": {
         "pid": "1261",
         "uid": "121",
@@ -1022,7 +1046,7 @@
         "uid": "100",
         "user": "systemd-timesync",
         "%mem": "0.0",
-        "minor page faults": "264",
+        "minor page faults": "265",
         "major page faults": "4"
     },
     "Proc_2598": {
@@ -1040,14 +1064,6 @@
         "%mem": "0.0",
         "minor page faults": "161",
         "major page faults": "0"
-    },
-    "Proc_902": {
-        "pid": "902",
-        "uid": "0",
-        "user": "root",
-        "%mem": "0.0",
-        "minor page faults": "141",
-        "major page faults": "4"
     },
     "Proc_2096": {
         "pid": "2096",
@@ -1681,120 +1697,128 @@
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_8206": {
-        "pid": "8206",
+    "Proc_1021": {
+        "pid": "1021",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_9709": {
-        "pid": "9709",
+    "Proc_1337": {
+        "pid": "1337",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_11271": {
-        "pid": "11271",
+    "Proc_8924": {
+        "pid": "8924",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_14620": {
-        "pid": "14620",
+    "Proc_9232": {
+        "pid": "9232",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_14890": {
-        "pid": "14890",
+    "Proc_10433": {
+        "pid": "10433",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_21778": {
-        "pid": "21778",
+    "Proc_11955": {
+        "pid": "11955",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_26980": {
-        "pid": "26980",
+    "Proc_13021": {
+        "pid": "13021",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_27160": {
-        "pid": "27160",
+    "Proc_14058": {
+        "pid": "14058",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_28416": {
-        "pid": "28416",
+    "Proc_15472": {
+        "pid": "15472",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_28806": {
-        "pid": "28806",
+    "Proc_16072": {
+        "pid": "16072",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_28867": {
-        "pid": "28867",
+    "Proc_17040": {
+        "pid": "17040",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_31208": {
-        "pid": "31208",
+    "Proc_17412": {
+        "pid": "17412",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_31316": {
-        "pid": "31316",
+    "Proc_18115": {
+        "pid": "18115",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_31318": {
-        "pid": "31318",
+    "Proc_18230": {
+        "pid": "18230",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",
         "minor page faults": "0",
         "major page faults": "0"
     },
-    "Proc_31320": {
-        "pid": "31320",
+    "Proc_18292": {
+        "pid": "18292",
+        "uid": "0",
+        "user": "root",
+        "%mem": "0.0",
+        "minor page faults": "0",
+        "major page faults": "0"
+    },
+    "Proc_18408": {
+        "pid": "18408",
         "uid": "0",
         "user": "root",
         "%mem": "0.0",

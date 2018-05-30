@@ -41,7 +41,7 @@ class SNAKE{
 	private:
 	const int client, id;
 	int dir, ultdir;
-	bool running, alive;
+	bool running, alive, killed;
 	thread * comunicating;
 	vector<Node> snake;
 	
@@ -76,56 +76,45 @@ class SNAKE{
 		auto & ultdir = s->ultdir;
 		auto & running = s->running;
 		auto & alive = s->alive;
+		auto & killed = s->killed;
 		
 		char buffer[n*m+100];
 		int tt;
 		
 		auto end = [&](int num){
 			cerr << "error " << num << endl;
-			s->alive = running = false;
-			close(client);
+			if(alive)
+				close(client);
+			alive = false;
+			running = false;
 		};
 		
-		tt = send(client, "1",1,0);
-		if(tt < 0){
-			end(0);
-			return;
-		}
-		
-		tt = recv(client, buffer, sizeof(buffer), 0);
-		if(tt < 0){
-			end(1);
-			return;
-		}
-		bool random = (buffer[0] == '1');
-		
 		running = true;
-		while(running && alive){
+		while(running && alive && !killed){
 			buffer[0] = '1';
 			int ptr = 1;
+			use_data.lock();
 			for(int i = 0; i < n; i++)
 				for(int j = 0; j < m; j++)
 					buffer[ptr++] = grid[i][j];
+			use_data.unlock();
 			tt = send(client, buffer, ptr, 0);
-			if(tt < 0){
-				end(2);
+			buffer[ptr] = 0;
+			if(tt <= 0){
+				end(0);
 				return;
 			}
-			if(random)
-				dir = rand()%4;
-			else{
-				tt = recv(client, buffer, sizeof(buffer), 0);
-				if(tt < 0){
-					end(3);
-					break;
-				}
-				int cur = buffer[0] - '0';
-				if(cur != NONE && cur != (ultdir^3))
-					dir = cur;
+			tt = recv(client, buffer, sizeof(buffer), 0);
+			if(tt <= 0){
+				end(1);
+				break;
 			}
+			int cur = buffer[0] - '0';
+			if(cur != NONE && cur != (ultdir^3))
+				dir = cur;
 			sleep_for(milliseconds(20));
 		}
-		if(alive)
+		if(alive && !killed)
 			send(client, "0", 1, 0);
 	}
 	
@@ -136,16 +125,19 @@ class SNAKE{
 		auto & ultdir = s->ultdir;
 		auto & running = s->running;
 		auto & alive = s->alive;
+		auto & killed = s->killed;
 		auto & snake = s->snake;
 		{
 			char buffer[10];
 			int tt;
 			tt = recv(client, buffer, sizeof(buffer), 0);
-			if(buffer[0] == '0' || tt != 1){
+			if(buffer[0] == '0' || tt != 1 || killed){
 				if(tt != 1)
 					cerr << "Mensagem inesperada do cliente (n, id) = (" << tt << " " << id << "): " << buffer << endl;
-				alive = running = false;
-				close(client);
+				if(alive)
+					close(client);
+				alive = false;
+				running = false;
 				return;
 			}
 		}
@@ -185,28 +177,31 @@ class SNAKE{
 		}
 		lck.unlock();
 		if(dir == -1){
-			send(client, "0", 1, 0);
-			alive = running = false;
-			close(client);
+			if(alive)
+				close(client);
+			alive = false;
+			running = false;
 		}
 		else
 			comunicate(s);
 	}
 	
 	public:
-	SNAKE(int socket_id, int ID):client(socket_id), id(ID), dir(-1), running(false), alive(true){
+	SNAKE(int socket_id, int ID):client(socket_id), id(ID), dir(-1), running(false), alive(true), killed(false){
 		if(id == -1){
 			send(client, "a", 1, 0);
+			if(alive)
+				close(client);
 			alive = false;
-			close(client);
 			return;
 		}
 		char buffer[10];
 		sprintf(buffer, "%d", id);
 		if(send(client, buffer, sizeof(buffer), 0) < 0){
+			cerr << "error 2" << endl;
+			if(alive)
+				close(client);
 			alive = false;
-			cerr << "error 4" << endl;
-			close(client);
 			return;
 		}
 		comunicating = new thread(init,this);
@@ -239,11 +234,14 @@ class SNAKE{
 	}
 	void kill(bool can_restart = false){
 		if(!can_restart){
-			running = alive = false;
+			killed = true;
+			running = false;
 			comunicating->join();
 			delete comunicating;
 			comunicating = NULL;
-			close(client);	
+			if(alive)
+				close(client);
+			alive = false;
 			return;	
 		}
 		running = false;
@@ -407,12 +405,12 @@ void run(){
 				for(auto p : pos)
 					grid[p.first][p.second] = 'a' + s->getid();
 				auto p = s->head();
-				grid[p.first][p.second] = 'A' + s->getid();
+				grid[p.first][p.second] = '0' + s->getid();
 			}
 		}
 		lck.unlock();
 		desenha();
-		sleep_for(milliseconds(2000));
+		sleep_for(milliseconds(300));
 	}
 }
 

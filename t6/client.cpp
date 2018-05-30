@@ -99,7 +99,7 @@ void connect_server(char * host, int portno){
 	};
 	
 	tt = recv(serverid, buffer, sizeof(buffer), 0); //recebe o id
-	if(tt < 0){
+	if(tt <= 0){
 		end(0);
 		return;
 	}
@@ -112,9 +112,9 @@ void connect_server(char * host, int portno){
 	
 	id = buffer[0] - '0';
 	
-	bool esperado = true;
+	bool esperado = true, random = false;
 	
-	while(1){
+	while(true){
 		menu();
 		key = NONE;
 		while(key != '0' && key != '1')
@@ -122,46 +122,28 @@ void connect_server(char * host, int portno){
 		
 		sprintf(buffer, "%c", key);
 		
-		tt = send(serverid, buffer, strlen(buffer), 0); //envia se quer sair do jogo ou começar um novo (1 = novo, 0 = sair)
+		if(buffer[0] == '1'){
+			options();
+			key = NONE;
+			while(key != '0' && key != '1')
+				sleep_for(milliseconds(10));
+			random = (key=='1');
+		}
 		
-		if(tt < 0){
+		tt = send(serverid, buffer, strlen(buffer), 0); //envia se quer sair do jogo ou começar um novo (1 = novo, 0 = sair)
+		if(tt <= 0){
 			end(1);
 			return;
 		}
 
-		if(buffer[0] == '0')
+		if(buffer[0] != '1')
 			break;
-		
-		tt = recv(serverid, buffer, sizeof(buffer), 0); //recebe se conseguiu alocar uma cobra nova (1 = sim, 0 = nao)
-		if(tt < 0){
-			end(2);
-			return;
-		}
-		
-		if(buffer[0] != '1'){
-			esperado = false;
-			break;
-		}
-		
-		options();
+			
 		key = NONE;
-		while(key != '0' && key != '1')
-			sleep_for(milliseconds(10));
 		
-		sprintf(buffer, "%c", key);
-		
-		tt = send(serverid, buffer, strlen(buffer), 0); //envia se quer jogo aleatorio ou normal (1 = rand, 0 = normal)		
-		if(tt < 0){
-			end(3);
-			return;
-		}
-		
-		key = NONE;
-		bool random = (buffer[0]=='1');
-		
-		while(1){ //jogo
+		while(true){ //jogo
 			tt = recv(serverid, buffer, sizeof(buffer), 0); // flag se continua seguida do grid
-			if(tt < 0){
+			if(tt <= 0){
 				end(4);
 				return;
 			}
@@ -172,21 +154,21 @@ void connect_server(char * host, int portno){
 			for(int i = 0; i < n; i++)
 				for(int j = 0; j < m; j++)
 					grid[i][j] = buffer[ptr++];
-			
 			desenha();
 			if(!random){
 				if(key < '0' || key > '3')
 					key = NONE;
-				sprintf(buffer, "%c", key);
-			
-				tt = send(serverid, buffer, strlen(buffer), 0); //envia a tecla pressionada
-				if(tt < 0){
-					end(5);
-					return;
-				}
-				
-				key = NONE;
 			}
+			else key = rand()%4 + '0';
+			sprintf(buffer, "%c", key);
+		
+			tt = send(serverid, buffer, strlen(buffer), 0); //envia a tecla pressionada
+			if(tt <= 0){
+				end(5);
+				return;
+			}
+			
+			key = NONE;
 		}
 		
 	}
