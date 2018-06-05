@@ -5,25 +5,15 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <iostream>
-#include <algorithm>
 #include <thread>
-#include <mutex>
-#include <pthread.h>
-#include <cstring>
 #include <vector>
-#include <utility>
-#include <thread>
-#include <ncurses.h>
 #include <cassert>
+#include <ncurses.h>
 
 using namespace std;
 using std::this_thread::sleep_for;
 using std::chrono::milliseconds;
 
-#define DOWN 0
-#define RIGHT 1
-#define LEFT 2
-#define UP 3
 #define NONE 4
 #define EMPTY '.'
 
@@ -31,7 +21,7 @@ const int MAX_SNAKES = 10;
 const int SNAKE_LEN = 20;
 const int MAX_TRIES = 100;
 const int mx[] = {1,0,0,-1}, my[] = {0,1,-1,0};
-const int n = 30, m = 40;
+const int n = 30, m = 120;
 
 mutex use_data;
 char grid[n][m];
@@ -296,7 +286,7 @@ void connect_clients(){
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
 	serv_addr.sin_port = htons(portno);
 
-	int binded = bind(socketId, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
+	auto binded = ::bind(socketId, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 	if(binded < 0)
 		exit(-1);
 	listen(socketId, MAX_SNAKES);
@@ -305,7 +295,7 @@ void connect_clients(){
 		newSocketId = accept(socketId, (struct sockaddr *) &clie_addr, &clienlenght);
 		if(newSocketId < 0)
 			continue;
-		if(kill){
+		if (kill){
 			close(newSocketId);
 			break;
 		}
@@ -320,11 +310,70 @@ void connect_clients(){
 	close(socketId);
 }
 
+namespace UI {
+	char input = NONE;
+	bool started = false;
+	bool not_ended = true;
+	thread reading_thread;
+
+	const char QUIT = 'q';
+
+	char get_input(int ch) {
+		if (ch >= '0' && ch <= '9')
+			return ch;
+		switch(ch) {
+			case 'q': return QUIT;
+			case 'Q': return QUIT;
+			default: return NONE;
+		}
+	}
+
+	void read() {
+		int in_ch;
+		sleep_for(milliseconds(100));
+		while (not_ended) {
+			in_ch = getch();
+			if (in_ch != ERR)
+				UI::input = get_input(in_ch);
+			sleep_for(milliseconds(10));
+		}
+	}
+
+	void init() {
+		initscr();
+		curs_set(0);
+
+		noecho();
+		cbreak();
+		keypad(stdscr, true);
+		nodelay(stdscr, true);
+
+		started = true;
+		reading_thread = thread(read);
+	}
+
+	void quit() {
+		not_ended = false;
+		reading_thread.join();
+		endwin();
+	}
+
+	void draw() {
+		clear();
+		move(0, 0);
+		printw("you are the server. press Q to quit. press player id to kick him.\n");
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++)
+				printw("%c", grid[i][j]);
+			printw("\n");
+		}
+		refresh();
+	}
+}
+
 void getinput(){
-	char key;
 	while(!kill){
-		scanf(" %c", &key); //AQUI CARLOS
-		if(key == 'q' || key == 'Q'){
+		if (UI::input == UI::QUIT){
 			kill = true;
 			int serverid;
 			struct sockaddr_in new_serv_addr;
@@ -342,9 +391,9 @@ void getinput(){
 			close(serverid);
 		}
 			
-		if('0' <= key && key <= '9'){
+		if (UI::input >= '0' && UI::input <= '9'){
 			for(SNAKE * &s : snakes) if(s){
-				if(s->isalive() && s->getid() == key-'0'){
+				if(s->isalive() && s->getid() == UI::input-'0'){
 					s->kill();
 					delete s;
 					s = NULL;
@@ -354,23 +403,9 @@ void getinput(){
 	}
 }
 
-void show_end(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
-	printf("Fim\n");
-	scanf("%*c");
-} 
-
-void desenha(){ //AQUI CARLOS (pode apagar tudo; só codei pra testes)
-	system("clear");
-	printf("vc eh o servidor\n");
-	for(int i = 0; i < n; i++){
-		for(int j = 0; j < m; j++)
-			printf("%c", grid[i][j]);
-		printf("\n");
-	}
-}
-
 void run(){
-	while(!kill){
+	UI::init();
+	while (!kill){
 		static int aux[n][m];
 		memset(aux, 0, sizeof(aux));
 		unique_lock<mutex>lck(use_data);
@@ -409,15 +444,16 @@ void run(){
 			}
 		}
 		lck.unlock();
-		desenha();
+		UI::draw();
 		sleep_for(milliseconds(300));
 	}
+	UI::quit();
 }
 
 int main (int argc, char *argv[]){
 	if(argc != 2){
-		cerr << "Formato: " << argv[0] << " [porta]" << endl;
-		return 0;
+		cerr << "Call format: " << argv[0] << " [port]" << endl;
+		return 1;
 	}
 	srand(time(NULL));	
 	memset(grid, EMPTY, sizeof(grid));
@@ -426,8 +462,6 @@ int main (int argc, char *argv[]){
 	threads.emplace_back(thread(connect_clients));
 	threads.emplace_back(thread(getinput));
 	threads.emplace_back(thread(run));
-	for(thread & t : threads)
+	for (thread & t : threads)
 		t.join();
-	show_end();
 }
-

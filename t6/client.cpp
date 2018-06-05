@@ -5,6 +5,11 @@
 #include <thread>
 #include <stdexcept>
 #include <ncurses.h>
+#include <random>
+
+std::random_device rd;
+std::mt19937 rand_gen(rd());
+std::uniform_int_distribution<> uniform_dist(0, 3);
 
 using namespace std;
 using std::this_thread::sleep_for;
@@ -18,7 +23,7 @@ const char NONE = '4';
 const char OPT1 = '5';
 const char OPT2 = '6';
 
-const int n = 30, m = 40;
+const int n = 30, m = 120;
 char grid[n][m];
 int id = -1;
 
@@ -170,6 +175,14 @@ void connect_server(char * host, int portno) {
 		server_input = UI::input == OPT1 ? '1' : '0';
 		sprintf(buffer, "%c", server_input);
 
+		if (server_input == '1') {
+			UI::input = NONE;
+			UI::options();
+			while (UI::input != OPT1 && UI::input != OPT2)
+				sleep_for(milliseconds(10));
+			random = (UI::input == OPT2);		
+		}
+
 		// send choice to server
 		n_bytes = send(serverid, buffer, strlen(buffer), 0);
 		if (n_bytes <= 0) {
@@ -178,12 +191,6 @@ void connect_server(char * host, int portno) {
 		}
 
 		if (server_input == '0') break;
-
-		UI::input = NONE;
-		UI::options();
-		while (UI::input != OPT1 && UI::input != OPT2)
-			sleep_for(milliseconds(10));
-		random = (UI::input == OPT2);
 
 		UI::input = NONE;
 		while (true) {
@@ -209,7 +216,7 @@ void connect_server(char * host, int portno) {
 					server_input = UI::input;
 				UI::input = NONE;
 			}
-			else server_input = rand()%4 + '0';
+			else server_input = uniform_dist(rand_gen)%4 + '0';
 			sprintf(buffer, "%c", server_input);
 			n_bytes = send(serverid, buffer, strlen(buffer), 0);
 			if (n_bytes <= 0) {
