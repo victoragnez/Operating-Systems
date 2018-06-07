@@ -6,6 +6,9 @@
 #include <netdb.h>
 #include <iostream>
 #include <thread>
+#include <mutex>
+#include <algorithm>
+#include <cstring>
 #include <vector>
 #include <cassert>
 #include <ncurses.h>
@@ -286,6 +289,10 @@ void connect_clients(){
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
 	serv_addr.sin_port = htons(portno);
 
+	{
+		int option = 1;
+		setsockopt(socketId, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
+	}
 	auto binded = ::bind(socketId, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 	if(binded < 0)
 		exit(-1);

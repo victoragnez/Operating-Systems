@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <ncurses.h>
 #include <random>
+#include <cstring>
 
 std::random_device rd;
 std::mt19937 rand_gen(rd());
