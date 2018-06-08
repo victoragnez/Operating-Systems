@@ -340,8 +340,7 @@ namespace UI {
 		sleep_for(milliseconds(100));
 		while (not_ended) {
 			in_ch = getch();
-			if (in_ch != ERR)
-				UI::input = get_input(in_ch);
+			UI::input = get_input(in_ch);
 			sleep_for(milliseconds(10));
 		}
 	}

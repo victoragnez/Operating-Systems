@@ -178,9 +178,10 @@ void connect_server(char * host, int portno) {
 
 		if (server_input == '1') {
 			UI::input = NONE;
-			UI::options();
-			while (UI::input != OPT1 && UI::input != OPT2)
+			while (UI::input != OPT1 && UI::input != OPT2){
+			    UI::options();
 				sleep_for(milliseconds(10));
+		    }
 			random = (UI::input == OPT2);		
 		}
 
